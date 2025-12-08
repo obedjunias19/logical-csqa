@@ -1,4 +1,4 @@
-# CommonsenseQA with Logical Combinations
+# CommonsenseQA-Logic: A Neuro-Symbolic Benchmark for Logical Commonsense Reasoning
 
 This repository contains the code and resources for our CommonsenseQA-Logic paper.
 
