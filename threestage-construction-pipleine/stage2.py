@@ -62,12 +62,12 @@ CORRECT OPTION REFINEMENT:
     b. Now from the list of generated correct, filter any irrelevant options.
     
 2. Remove obvious/direct answers that don't require reasoning
-   - "populated areas" → "festivals" (requires: festivals → crowds → people)
-   - "kitchen" → "cooking spaces" (requires: cooking → aromas → attraction)
+   - "populated areas" to "festivals" (requires: festivals to crowds to people)
+   - "kitchen" to "cooking spaces" (requires: cooking to aromas to attraction)
 
 3. Eliminate explanation creep while preserving reasoning requirement
-   - "traveling to a conference" → "airport travel"
-   - "resentment from unreciprocated efforts" → "resentment"
+   - "traveling to a conference" to "airport travel"
+   - "resentment from unreciprocated efforts" to "resentment"
 
 4. Ensure all correct options require 2-3 step inference
    - Test: Can this be answered by keyword matching alone?
@@ -144,7 +144,7 @@ STRICT ENFORCEMENT:
 - OUTPUT FORMAT: Simple word list only
 
 BEFORE FINALIZING - Validate each option:
-1. Count words (must be ≤ 3)
+1. Count words (must be atleast 3)
 2. Check for explanations (reject if found)
 3. Verify reasoning requirement (not obvious)
 

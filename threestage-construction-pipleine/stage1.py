@@ -93,7 +93,7 @@ AVOID OBVIOUS GIVEAWAYS:
 - Avoid shallow wrong answers that can be rejected with a keyword check.
 
 QUALITY REQUIREMENTS:
-- Each option must force: Multi Action → Multi Effect → Goal Achievement reasoning
+- Each option must force: Multi Action to Multi Effect to Goal Achievement reasoning
 - Include edge cases that test deep vs surface understanding.
 - Test causal mechanism understanding, not just correlation.
 - Each option must require connecting more than 2 distinct concepts to evaluate.
@@ -106,7 +106,7 @@ QUALITY REQUIREMENTS:
 
 FORBIDDEN PATTERNS:
 - Shouldn't contain explanatory phrases
-- Shouldn't include location descriptions ("park with scenic view" → just "park")
+- Shouldn't include location descriptions ("park with scenic view" to just "park")
 - Shouldn't use conjunctions within options ("and", "but", "or" within single option)
 - Shouldn't provide reasoning ("because", "since", "due to")
 

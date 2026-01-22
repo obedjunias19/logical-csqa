@@ -4,10 +4,10 @@ import pandas as pd
 import json
 import csv
 
-with open("/kaggle/input/csqa-logicalcombinations/dev_all_hf.json", "r") as f:
+with open("/kaggle/input/csqa-logicalcombinations/test_all_hf.json", "r") as f:
     data = [json.loads(line) for line in f]
 
-with open('dev_dataset.csv', 'w', newline='', encoding='utf-8') as f:
+with open('test_dataset.csv', 'w', newline='', encoding='utf-8') as f:
     writer = csv.writer(f)
 
     writer.writerow(['question', 'A', 'B', 'C', 'D', 'correct_label', 'correct_answer_text', 'qa_type'])
@@ -33,9 +33,9 @@ with open('dev_dataset.csv', 'w', newline='', encoding='utf-8') as f:
         ]
         writer.writerow(row)
 
-print("Conversion complete! Check dev_dataset.csv")
+print("Conversion complete! Check test_dataset.csv")
 
-qa_df = pd.read_csv('/kaggle/working/dev_dataset.csv')
+qa_df = pd.read_csv('/kaggle/working/test_dataset.csv')
 
 import pandas as pd
 import numpy as np
@@ -109,18 +109,14 @@ def calculate_qa_metrics(results_df):
     return metrics, cm, y_true, y_pred
 
 def print_qa_metrics(metrics):
-    print("=" * 50)
     print("QA EVALUATION METRICS")
-    print("=" * 50)
     
     print(f"Total Questions: {metrics['total_questions']}")
     print(f"Answered Questions: {metrics['answered_questions']}")
     print(f"Answer Rate: {metrics['answer_rate']:.1%}")
     print(f"Accuracy: {metrics['accuracy']:.1%}")
     
-    print("\n" + "-" * 30)
     print("OVERALL METRICS")
-    print("-" * 30)
     print(f"Macro Precision: {metrics['macro_precision']:.3f}")
     print(f"Macro Recall: {metrics['macro_recall']:.3f}")
     print(f"Macro F1: {metrics['macro_f1']:.3f}")
@@ -128,11 +124,8 @@ def print_qa_metrics(metrics):
     print(f"Micro Recall: {metrics['micro_recall']:.3f}")
     print(f"Micro F1: {metrics['micro_f1']:.3f}")
     
-    print("\n" + "-" * 40)
     print("PER-CLASS METRICS")
-    print("-" * 40)
     print(f"{'Class':<5} {'Precision':<9} {'Recall':<6} {'F1':<6} {'Support'}")
-    print("-" * 40)
     
     for label in ['A', 'B', 'C', 'D']:
         precision = metrics[f'{label}_precision']
@@ -154,9 +147,7 @@ def plot_confusion_matrix(cm, labels=['A', 'B', 'C', 'D'], save_path=None):
     plt.show()
 
 def analyze_answer_distribution(results_df):
-    print("\n" + "=" * 50)
     print("ANSWER DISTRIBUTION ANALYSIS")
-    print("=" * 50)
 
     true_dist = results_df['correct_label'].value_counts().sort_index()
     print("\nTrue Label Distribution:")
@@ -176,9 +167,9 @@ def analyze_answer_distribution(results_df):
 
     print("\nLabel Rotation Check:")
     if len(set(true_dist.values)) == 1:
-        print("✓ Perfect label rotation detected")
+        print(" Perfect label rotation detected")
     else:
-        print("⚠ Uneven label distribution detected")
+        print(" Uneven label distribution detected")
         
 def comprehensive_qa_evaluation(results_df, save_plots=True):
     metrics, cm, y_true, y_pred = calculate_qa_metrics(results_df)
@@ -197,9 +188,7 @@ def comprehensive_qa_evaluation(results_df, save_plots=True):
 
     valid_preds = results_df.dropna(subset=['predicted_label'])
     if len(valid_preds) > 0:
-        print("\n" + "=" * 50)
         print("DETAILED CLASSIFICATION REPORT")
-        print("=" * 50)
         print(classification_report(
             valid_preds['correct_label'], 
             valid_preds['predicted_label'],
